@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://0i060g1ou8k2"]
+
+[ext_resource type="Script" path="res://BaseData/Life/second_one.gd" id="1_nwqef"]
+[ext_resource type="PackedScene" uid="uid://x4iwjjlo03th" path="res://BaseData/Life/S137c/CubeChan.glb" id="2_nwqef"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lng2a"]
+radius = 0.313522
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nwqef"]
+size = Vector3(0.619629, 1.79663, 1)
+
+[node name="secondONE" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_nwqef")
+
+[node name="body" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_lng2a")
+
+[node name="body2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00366211, 0.128784, 0)
+shape = SubResource("BoxShape3D_nwqef")
+
+[node name="CubeChan2" parent="." instance=ExtResource("2_nwqef")]
+transform = Transform3D(0.799935, 0, 0, 0, 0.799935, 0, 0, 0, 0.799935, 0, -0.949078, 0)

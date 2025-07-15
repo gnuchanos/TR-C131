@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ccna5wdpt00lc"]
+
+[resource]
+resource_name = "e13"
+cull_mode = 2
+albedo_color = Color(0.654902, 0.227451, 0.835294, 1)
+roughness = 0.5
+emission_enabled = true
+emission = Color(0.653314, 0.226038, 0.835711, 1)

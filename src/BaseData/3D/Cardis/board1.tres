@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cwp8xu43cvr84"]
+
+[ext_resource type="Texture2D" uid="uid://dbwyuyf0lgpn7" path="res://BaseData/3D/Cardis/Cardis_board1.png" id="1_eoxrv"]
+
+[resource]
+resource_name = "board1"
+cull_mode = 2
+albedo_texture = ExtResource("1_eoxrv")
+roughness = 0.5

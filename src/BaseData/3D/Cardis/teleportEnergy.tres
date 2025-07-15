@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c7evpy8q5io6f"]
+
+[resource]
+resource_name = "teleportEnergy"
+cull_mode = 2
+albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
+roughness = 0.5
+emission_enabled = true
+emission = Color(1, 1, 1, 1)

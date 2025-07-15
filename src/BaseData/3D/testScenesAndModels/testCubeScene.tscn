@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctpsiahsrdsc3"]
+
+[ext_resource type="Shader" path="res://BaseData/Shaders/retroShader.gdshader" id="1_pybqw"]
+[ext_resource type="Texture2D" uid="uid://cjin1gcrcj18s" path="res://BaseData/3D/testScenesAndModels/testBrickTexture.jpg" id="2_3fmel"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3fmel"]
+render_priority = 0
+shader = ExtResource("1_pybqw")
+shader_parameter/pixel_count = Vector2(64, 64)
+shader_parameter/FILTER_GAMMA = 1.0
+shader_parameter/COLOR_GAMMA = 1.0
+shader_parameter/albedo_tex = ExtResource("2_3fmel")
+
+[sub_resource type="BoxMesh" id="BoxMesh_cm2ar"]
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+material_override = SubResource("ShaderMaterial_3fmel")
+mesh = SubResource("BoxMesh_cm2ar")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07304, 1.95945, 3.66985)
+omni_range = 12.4466

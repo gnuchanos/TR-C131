@@ -1,0 +1,309 @@
+[gd_scene load_steps=34 format=3 uid="uid://cglsul203lfyi"]
+
+[ext_resource type="Script" path="res://BaseData/Scripts/MainMenu.gd" id="1_32ccm"]
+[ext_resource type="PackedScene" uid="uid://dlbm17bymbnjn" path="res://BaseData/3D/Cardis/Cardis.glb" id="2_h1k7f"]
+[ext_resource type="PackedScene" uid="uid://167k67es3go7" path="res://BaseData/3D/CardisExtra/3DMap.glb" id="3_om2u0"]
+[ext_resource type="PackedScene" uid="uid://bgdgqtnw0irwx" path="res://BaseData/3D/CardisExtra/centerObject.glb" id="4_ri5ie"]
+[ext_resource type="PackedScene" uid="uid://cxfwpju4isevq" path="res://BaseData/3D/CardisExtra/energyDC.glb" id="5_822mu"]
+[ext_resource type="PackedScene" uid="uid://bwmk5y3y57hai" path="res://BaseData/3D/CardisExtra/fusionCheck.glb" id="6_2ba3v"]
+[ext_resource type="PackedScene" uid="uid://gpf735edx4f1" path="res://BaseData/3D/CardisExtra/fusionReady.glb" id="7_ycrua"]
+[ext_resource type="PackedScene" uid="uid://bli2v7av5784a" path="res://BaseData/3D/CardisExtra/fusion_rotate.glb" id="8_y30ds"]
+[ext_resource type="PackedScene" uid="uid://b22gjouth22t1" path="res://BaseData/3D/CardisExtra/portalLoading.glb" id="9_8qlib"]
+[ext_resource type="PackedScene" uid="uid://urseykv0ord2" path="res://BaseData/3D/CardisExtra/portal_door.glb" id="10_v62xt"]
+[ext_resource type="PackedScene" uid="uid://b4inptl5kjt4o" path="res://BaseData/3D/CardisExtra/settingsObject.glb" id="11_pm2eq"]
+[ext_resource type="PackedScene" uid="uid://13hyuesmqvad" path="res://BaseData/3D/CardisExtra/startEngineObject.glb" id="12_bgyq2"]
+[ext_resource type="Texture2D" uid="uid://cvdw2hx57sanh" path="res://BaseData/skybox/minedump_flats_1k.exr" id="13_74i1y"]
+[ext_resource type="AudioStream" uid="uid://brwqo4ms71k0i" path="res://BaseData/Sound/InSoundW13.ogg" id="14_h1k7f"]
+[ext_resource type="Shader" path="res://BaseData/FPS/OutLineShader.gdshader" id="14_ri5ie"]
+[ext_resource type="PackedScene" uid="uid://cad2dv5kvx2jn" path="res://BaseData/NPC/fatih.tscn" id="15_om2u0"]
+[ext_resource type="Shader" path="res://BaseData/Shaders/retroShader.gdshader" id="15_ycrua"]
+[ext_resource type="Shader" path="res://BaseData/FPS/vhsShader.gdshader" id="16_y30ds"]
+[ext_resource type="PackedScene" uid="uid://0i060g1ou8k2" path="res://BaseData/Life/SecondOne.tscn" id="17_822mu"]
+[ext_resource type="FontFile" uid="uid://bqmglpkfyr1mm" path="res://BaseData/Font/FreeSans.ttf" id="20_y30ds"]
+
+[sub_resource type="Animation" id="Animation_aaum0"]
+resource_name = "loop"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.998, 3.996),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.232855, 0), Vector3(0, 0.516255, 0), Vector3(0, 0.232855, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jm1jn"]
+_data = {
+"loop": SubResource("Animation_aaum0")
+}
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_aaum0"]
+panorama = ExtResource("13_74i1y")
+energy_multiplier = 0.1
+
+[sub_resource type="Sky" id="Sky_ri5ie"]
+sky_material = SubResource("PanoramaSkyMaterial_aaum0")
+
+[sub_resource type="Environment" id="Environment_x3jm3"]
+background_mode = 1
+background_energy_multiplier = 1.25
+sky = SubResource("Sky_ri5ie")
+ambient_light_source = 2
+ambient_light_energy = 2.95
+tonemap_mode = 3
+ssil_enabled = true
+glow_enabled = true
+glow_bloom = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_822mu"]
+render_priority = 0
+shader = ExtResource("14_ri5ie")
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+shader_parameter/shadow_thickness = 1.8
+
+[sub_resource type="QuadMesh" id="QuadMesh_2ba3v"]
+size = Vector2(4, 3.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8qlib"]
+shader = ExtResource("15_ycrua")
+shader_parameter/color_bleed_enabled = true
+shader_parameter/chromatic_abberation_enabled = true
+shader_parameter/film_grain_enabled = true
+shader_parameter/sharpness_enabled = true
+shader_parameter/chromatic_abberation_seperation = 0.016
+shader_parameter/chromatic_abberation_intensity = 1.5
+shader_parameter/chromatic_abberation_blur_strength = 1.0
+shader_parameter/film_grain_intensity = 1.0
+shader_parameter/grain_size = 2.0
+shader_parameter/darkness_clamp = 0.28
+shader_parameter/sharpness_size = 1.0
+shader_parameter/sharpness_intensity = 0.7
+shader_parameter/color_bleed_seperation = 0.02
+shader_parameter/color_bleed_intensity = 0.2
+shader_parameter/anti_bleed_intensity = 1.8
+shader_parameter/color_bleed_blur_strength = 1.0
+shader_parameter/color_bleed_quality = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v62xt"]
+shader = ExtResource("16_y30ds")
+shader_parameter/vhs_resolution = Vector2(320, 240)
+shader_parameter/samples = 2
+shader_parameter/crease_noise = 1.0
+shader_parameter/crease_opacity = 0.5
+shader_parameter/filter_intensity = 0.1
+shader_parameter/tape_crease_smear = 0.2
+shader_parameter/tape_crease_intensity = 0.2
+shader_parameter/tape_crease_jitter = 0.1
+shader_parameter/tape_crease_speed = 0.5
+shader_parameter/tape_crease_discoloration = 1.0
+shader_parameter/bottom_border_thickness = 6.0
+shader_parameter/bottom_border_jitter = 6.0
+shader_parameter/noise_intensity = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_om2u0"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.815686)
+
+[sub_resource type="QuadMesh" id="QuadMesh_om2u0"]
+size = Vector2(2.215, 1)
+
+[sub_resource type="Animation" id="Animation_y30ds"]
+resource_name = "hello"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.0472, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8qlib"]
+_data = {
+"hello": SubResource("Animation_y30ds")
+}
+
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_32ccm")
+
+[node name="Cardis" parent="." instance=ExtResource("2_h1k7f")]
+
+[node name="3DMap" parent="Cardis" instance=ExtResource("3_om2u0")]
+
+[node name="centerObject" parent="Cardis" instance=ExtResource("4_ri5ie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.438521, 0)
+
+[node name="CenterAnim" type="AnimationPlayer" parent="Cardis/centerObject"]
+libraries = {
+"": SubResource("AnimationLibrary_jm1jn")
+}
+
+[node name="energyDC" parent="Cardis" instance=ExtResource("5_822mu")]
+transform = Transform3D(1.44129, 0, -1.44129, 0, 2.03829, 0, 1.44129, 0, 1.44129, 0.839125, 1.46646, 0.772869)
+
+[node name="fusionCheck" type="Node3D" parent="Cardis"]
+
+[node name="f0" parent="Cardis/fusionCheck" instance=ExtResource("6_2ba3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81752, 1.08019, 0.0585859)
+
+[node name="f1" parent="Cardis/fusionCheck" instance=ExtResource("6_2ba3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81752, 1.08019, -0.0199326)
+
+[node name="f2" parent="Cardis/fusionCheck" instance=ExtResource("6_2ba3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81752, 1.08019, -0.0996959)
+
+[node name="fusionReady" parent="Cardis" instance=ExtResource("7_ycrua")]
+transform = Transform3D(1.66205, 0, 0, 0, 1.66205, 0, 0, 0, 1.66205, -1.42027, 1.03626, -0.0538128)
+
+[node name="FusionRotate" type="Node3D" parent="Cardis"]
+
+[node name="fr0" parent="Cardis/FusionRotate" instance=ExtResource("8_y30ds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32555, 1.35317, -0.0787146)
+
+[node name="fr1" parent="Cardis/FusionRotate" instance=ExtResource("8_y30ds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35757, 1.35317, -0.0971928)
+
+[node name="fr2" parent="Cardis/FusionRotate" instance=ExtResource("8_y30ds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28348, 1.35317, -0.059865)
+
+[node name="portalLoading2" parent="Cardis" instance=ExtResource("9_8qlib")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.7675, 0.0709222, 0.00320208)
+
+[node name="portal_door" parent="Cardis" instance=ExtResource("10_v62xt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.31021, 0.138851, -0.030243)
+
+[node name="settings" type="Node3D" parent="Cardis"]
+
+[node name="s0" parent="Cardis/settings" instance=ExtResource("11_pm2eq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.486907, 0.995827, 1.43926)
+
+[node name="s1" parent="Cardis/settings" instance=ExtResource("11_pm2eq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.446195, 1.04306, 1.31939)
+
+[node name="s2" parent="Cardis/settings" instance=ExtResource("11_pm2eq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.397006, 1.09206, 1.207)
+
+[node name="s3" parent="Cardis/settings" instance=ExtResource("11_pm2eq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.355997, 1.1452, 1.09507)
+
+[node name="s4" parent="Cardis/settings" instance=ExtResource("11_pm2eq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32097, 1.19863, 0.977817)
+
+[node name="s5" parent="Cardis/settings" instance=ExtResource("11_pm2eq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.262054, 1.24714, 0.870571)
+
+[node name="s6" parent="Cardis/settings" instance=ExtResource("11_pm2eq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20964, 1.29941, 0.752464)
+
+[node name="startEngineObject" parent="Cardis" instance=ExtResource("12_bgyq2")]
+transform = Transform3D(1, 0, 0, 0, 0.549402, 0.835558, 0, -0.835558, 0.549402, -0.0364495, 0.823354, -2.01734)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_x3jm3")
+
+[node name="light" type="Node3D" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="light"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8248, 0)
+light_energy = 0.075
+omni_range = 14.0714
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="light"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85244, -5.61444)
+light_energy = 1.645
+omni_range = 14.0714
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.966823, 0, -0.255446, 0, 1, 0, 0.255446, 0, -0.966823, -0.411, 1.307, -3.418)
+fov = 90.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.938011)
+material_override = SubResource("ShaderMaterial_822mu")
+mesh = SubResource("QuadMesh_2ba3v")
+
+[node name="shader0" type="CanvasLayer" parent="Camera3D"]
+
+[node name="ColorRect" type="ColorRect" parent="Camera3D/shader0"]
+material = SubResource("ShaderMaterial_8qlib")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="shader1" type="CanvasLayer" parent="Camera3D"]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="Camera3D/shader1"]
+material = SubResource("ShaderMaterial_v62xt")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="InsideSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("14_h1k7f")
+
+[node name="Fatih" parent="." instance=ExtResource("15_om2u0")]
+transform = Transform3D(-0.824788, 0, 0.565442, 0, 1, 0, -0.565442, 0, -0.824788, -3.78334, 0.959648, 6.21039)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Fatih"]
+transform = Transform3D(1.43003, 0, -5.96046e-08, 0, 3.68163, 0, 5.96046e-08, 0, 1.43003, -0.328635, 0.335, 1.21619)
+material_override = SubResource("StandardMaterial3D_om2u0")
+mesh = SubResource("QuadMesh_om2u0")
+
+[node name="secondONE" parent="." instance=ExtResource("17_822mu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27755, 0.942874, -0.152939)
+
+[node name="anim" type="AnimationPlayer" parent="secondONE"]
+libraries = {
+"": SubResource("AnimationLibrary_8qlib")
+}
+
+[node name="ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="strtext" type="Label" parent="ui"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 622.0
+offset_right = 912.0
+offset_bottom = 868.0
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("20_y30ds")
+theme_override_font_sizes/font_size = 51
+text = "Press 1 for Turkish  
+Press 2 for English  
+
+Hold down the left mouse button to start"
+
+[node name="lang" type="Label" parent="ui"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 524.0
+offset_right = 912.0
+offset_bottom = 770.0
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("20_y30ds")
+theme_override_font_sizes/font_size = 51
+text = "Lang: Turkish"

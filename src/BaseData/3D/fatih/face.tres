@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b4bdiwn5fx3bu"]
+
+[ext_resource type="Texture2D" uid="uid://cb0ces8w51411" path="res://BaseData/3D/fatih/fatih_face_fatih.png" id="1_vobai"]
+
+[resource]
+resource_name = "face"
+cull_mode = 2
+albedo_texture = ExtResource("1_vobai")
+roughness = 0.5

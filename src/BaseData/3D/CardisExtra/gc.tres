@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dpddbuuhwb5iq"]
+
+[ext_resource type="Texture2D" uid="uid://d4ky2ievvtfq" path="res://BaseData/3D/CardisExtra/Cardis_portable_fullColorAtlas.png" id="1_ya8ie"]
+
+[resource]
+resource_name = "gc"
+cull_mode = 2
+albedo_texture = ExtResource("1_ya8ie")
+metallic_specular = 1.0
+texture_filter = 2

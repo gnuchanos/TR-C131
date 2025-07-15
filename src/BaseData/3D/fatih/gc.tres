@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bp6pkxir074hr"]
+
+[ext_resource type="Texture2D" uid="uid://cp5i20xp1qi4h" path="res://BaseData/3D/fatih/fatih_fullColorAtlas.png" id="1_5g3f1"]
+
+[resource]
+resource_name = "gc"
+cull_mode = 2
+albedo_texture = ExtResource("1_5g3f1")
+roughness = 0.5
+texture_filter = 2

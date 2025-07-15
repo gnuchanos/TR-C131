@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://d28a36bhj3i66"]
+
+[ext_resource type="Texture2D" uid="uid://ddpeo72hbl8dd" path="res://BaseData/3D/CardisExtra/portalLoading_fullColorAtlas.png" id="1_rc4b8"]
+
+[resource]
+resource_name = "lightGC"
+cull_mode = 2
+diffuse_mode = 3
+albedo_texture = ExtResource("1_rc4b8")
+metallic_specular = 1.0
+emission_texture = ExtResource("1_rc4b8")

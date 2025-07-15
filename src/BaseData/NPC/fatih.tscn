@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cad2dv5kvx2jn"]
+
+[ext_resource type="PackedScene" uid="uid://nrhwwstjdono" path="res://BaseData/3D/fatih/fatih.glb" id="1_hvk6v"]
+[ext_resource type="Script" path="res://BaseData/NPC/fatih.gd" id="1_k6fcj"]
+[ext_resource type="Animation" uid="uid://diq3wsq4pu54s" path="res://BaseData/3D/fatih/idl.res" id="3_pdgt5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ks7jw"]
+radius = 0.568229
+height = 2.295
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_huw50"]
+_data = {
+"idl": ExtResource("3_pdgt5")
+}
+
+[node name="Fatih" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00123, 0)
+script = ExtResource("1_k6fcj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.153375, 0)
+shape = SubResource("CapsuleShape3D_ks7jw")
+
+[node name="fatih" parent="." instance=ExtResource("1_hvk6v")]
+transform = Transform3D(-3.86015e-08, 0, -0.883101, 0, 0.883101, 0, 0.883101, 0, -3.86015e-08, 0, -0.96287, 0)
+
+[node name="anim" type="AnimationPlayer" parent="fatih"]
+libraries = {
+"fatih_": SubResource("AnimationLibrary_huw50")
+}
+autoplay = "fatih_/idl"

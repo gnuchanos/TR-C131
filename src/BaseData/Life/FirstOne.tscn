@@ -1,0 +1,108 @@
+[gd_scene load_steps=34 format=3 uid="uid://cvo3b1osq3552"]
+
+[ext_resource type="Script" path="res://BaseData/Life/first_one.gd" id="1_3yle6"]
+[ext_resource type="PackedScene" uid="uid://bkl1damiiiuvh" path="res://BaseData/Life/OnPC3D/CubeChanPc.glb" id="1_eb1q6"]
+[ext_resource type="Animation" uid="uid://dmxk0l65wbp0p" path="res://BaseData/Life/OnPC3D/idle_.res" id="2_ygswn"]
+[ext_resource type="Animation" uid="uid://dvqqx63be6ssf" path="res://BaseData/Life/OnPC3D/idle_bye.res" id="3_6r1t2"]
+[ext_resource type="Animation" uid="uid://48kd1r3fxmrg" path="res://BaseData/Life/OnPC3D/idle_Talk.res" id="4_3yle6"]
+[ext_resource type="Animation" uid="uid://bafcugm4xl52e" path="res://BaseData/Life/OnPC3D/idle_think.res" id="5_nmn6t"]
+[ext_resource type="Animation" uid="uid://drk4e2j3iuk13" path="res://BaseData/Life/OnPC3D/idle__pcUse.res" id="6_856s5"]
+[ext_resource type="Script" path="res://BaseData/Life/AnimTreeOnPC.gd" id="7_6r1t2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lng2a"]
+radius = 0.313522
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3xhbm"]
+_data = {
+"idle_": ExtResource("2_ygswn"),
+"idle_Talk": ExtResource("4_3yle6"),
+"idle__pcUse": ExtResource("6_856s5"),
+"idle_bye": ExtResource("3_6r1t2"),
+"idle_think": ExtResource("5_nmn6t")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ygswn"]
+animation = &"onpc/idle_"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6r1t2"]
+animation = &"onpc/idle_Talk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3yle6"]
+animation = &"onpc/idle__pcUse"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nmn6t"]
+animation = &"onpc/idle_bye"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_856s5"]
+animation = &"onpc/idle_think"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3xhbm"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y5yw2"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i26s6"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hst65"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uhca3"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mr5ys"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ym6mp"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ppwcd"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xsweh"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aectk"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c7m6c"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wpg82"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p4j0s"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iqy4y"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s5cqt"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vaour"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cgmpj"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_y5yw2"]
+states/Start/position = Vector2(114, 152)
+states/onpc_idle_/node = SubResource("AnimationNodeAnimation_ygswn")
+states/onpc_idle_/position = Vector2(472, 152)
+states/onpc_idle_Talk/node = SubResource("AnimationNodeAnimation_6r1t2")
+states/onpc_idle_Talk/position = Vector2(472, 29)
+states/onpc_idle__pcUse/node = SubResource("AnimationNodeAnimation_3yle6")
+states/onpc_idle__pcUse/position = Vector2(647, 152)
+states/onpc_idle_bye/node = SubResource("AnimationNodeAnimation_nmn6t")
+states/onpc_idle_bye/position = Vector2(472, 285)
+states/onpc_idle_think/node = SubResource("AnimationNodeAnimation_856s5")
+states/onpc_idle_think/position = Vector2(304, 152)
+transitions = ["Start", "onpc_idle_think", SubResource("AnimationNodeStateMachineTransition_3xhbm"), "onpc_idle_think", "onpc_idle_Talk", SubResource("AnimationNodeStateMachineTransition_y5yw2"), "onpc_idle_Talk", "onpc_idle_think", SubResource("AnimationNodeStateMachineTransition_i26s6"), "onpc_idle_think", "onpc_idle_", SubResource("AnimationNodeStateMachineTransition_hst65"), "onpc_idle_", "onpc_idle_think", SubResource("AnimationNodeStateMachineTransition_uhca3"), "onpc_idle_", "onpc_idle__pcUse", SubResource("AnimationNodeStateMachineTransition_mr5ys"), "onpc_idle__pcUse", "onpc_idle_", SubResource("AnimationNodeStateMachineTransition_ym6mp"), "onpc_idle_", "onpc_idle_bye", SubResource("AnimationNodeStateMachineTransition_ppwcd"), "onpc_idle_bye", "onpc_idle_", SubResource("AnimationNodeStateMachineTransition_xsweh"), "onpc_idle_Talk", "onpc_idle_", SubResource("AnimationNodeStateMachineTransition_aectk"), "onpc_idle_", "onpc_idle_Talk", SubResource("AnimationNodeStateMachineTransition_c7m6c"), "onpc_idle_bye", "onpc_idle_think", SubResource("AnimationNodeStateMachineTransition_wpg82"), "onpc_idle_think", "onpc_idle_bye", SubResource("AnimationNodeStateMachineTransition_p4j0s"), "onpc_idle_bye", "onpc_idle__pcUse", SubResource("AnimationNodeStateMachineTransition_iqy4y"), "onpc_idle__pcUse", "onpc_idle_bye", SubResource("AnimationNodeStateMachineTransition_s5cqt"), "onpc_idle_Talk", "onpc_idle__pcUse", SubResource("AnimationNodeStateMachineTransition_vaour"), "onpc_idle__pcUse", "onpc_idle_Talk", SubResource("AnimationNodeStateMachineTransition_cgmpj")]
+graph_offset = Vector2(-17, 7)
+
+[node name="firstONE" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_3yle6")
+
+[node name="body" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_lng2a")
+
+[node name="CubeChanPc" parent="." instance=ExtResource("1_eb1q6")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.965247, 0)
+
+[node name="animPC" type="AnimationPlayer" parent="CubeChanPc"]
+libraries = {
+"onpc": SubResource("AnimationLibrary_3xhbm")
+}
+
+[node name="AnimTreeOnPC" type="AnimationTree" parent="CubeChanPc/animPC"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_y5yw2")
+anim_player = NodePath("..")
+script = ExtResource("7_6r1t2")

@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c5mtf0rme7max"]
+
+[ext_resource type="Texture2D" uid="uid://3vlqk3vm47de" path="res://BaseData/3D/Cardis/Cardis_screenW.png" id="1_vs0ov"]
+
+[resource]
+resource_name = "gPC"
+cull_mode = 2
+albedo_texture = ExtResource("1_vs0ov")
+roughness = 0.5

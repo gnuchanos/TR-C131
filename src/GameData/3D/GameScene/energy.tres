@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://da42y2igtfd5x"]
+
+[resource]
+resource_name = "energy"
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.490196, 0.12549, 0.615686, 0.611765)
+roughness = 0.5

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://lvuisu7ax0hx"]
+
+[ext_resource type="Script" path="res://GameData/Scripts/gameStart.gd" id="1_anpvr"]
+[ext_resource type="FontFile" uid="uid://1edkivc1y1ii" path="res://BaseData/Font/FreeSerif.ttf" id="1_o01kg"]
+
+[node name="gameStart" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_anpvr")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_o01kg")
+theme_override_font_sizes/font_size = 30
+editable = false

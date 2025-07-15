@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ce7smfeh3ut5l"]
+
+[ext_resource type="Texture2D" uid="uid://be04x3e43axrs" path="res://BaseData/3D/Cardis/Cardis_fullColorAtlas.png" id="1_whhng"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+disable_ambient_light = true
+albedo_texture = ExtResource("1_whhng")
+metallic_specular = 0.55

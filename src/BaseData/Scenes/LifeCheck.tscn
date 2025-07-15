@@ -1,0 +1,112 @@
+[gd_scene load_steps=10 format=3 uid="uid://3p1u3paueicu"]
+
+[ext_resource type="Texture2D" uid="uid://cvdw2hx57sanh" path="res://BaseData/skybox/minedump_flats_1k.exr" id="1_xjyjb"]
+[ext_resource type="PackedScene" uid="uid://dlbm17bymbnjn" path="res://BaseData/3D/Cardis/Cardis.glb" id="2_4bghd"]
+[ext_resource type="PackedScene" uid="uid://cvo3b1osq3552" path="res://BaseData/Life/FirstOne.tscn" id="3_erx35"]
+[ext_resource type="Shader" path="res://BaseData/FPS/OutLineShader.gdshader" id="4_bl8iq"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c08aw"]
+panorama = ExtResource("1_xjyjb")
+energy_multiplier = 0.1
+
+[sub_resource type="Sky" id="Sky_pyptm"]
+sky_material = SubResource("PanoramaSkyMaterial_c08aw")
+
+[sub_resource type="Environment" id="Environment_nuasx"]
+background_mode = 1
+background_energy_multiplier = 1.25
+sky = SubResource("Sky_pyptm")
+ambient_light_source = 2
+ambient_light_energy = 2.95
+tonemap_mode = 3
+ssil_enabled = true
+glow_enabled = true
+glow_bloom = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t4ia7"]
+render_priority = 0
+shader = ExtResource("4_bl8iq")
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+shader_parameter/shadow_thickness = 1.8
+
+[sub_resource type="QuadMesh" id="QuadMesh_28j4x"]
+size = Vector2(4, 3.5)
+
+[node name="TestScene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nuasx")
+
+[node name="Cardis" parent="." instance=ExtResource("2_4bghd")]
+
+[node name="cabl" parent="Cardis" index="0"]
+visible = false
+
+[node name="body_001" parent="Cardis" index="1"]
+visible = false
+
+[node name="body" parent="Cardis" index="2"]
+visible = false
+
+[node name="screen1" parent="Cardis" index="3"]
+visible = false
+
+[node name="body_002" parent="Cardis" index="4"]
+visible = false
+
+[node name="body_003" parent="Cardis" index="5"]
+visible = false
+
+[node name="body_004" parent="Cardis" index="6"]
+visible = false
+
+[node name="Cube_001" parent="Cardis" index="7"]
+visible = false
+
+[node name="fatihScene_all" parent="Cardis" index="8"]
+visible = false
+
+[node name="body_007" parent="Cardis" index="9"]
+visible = false
+
+[node name="login_door" parent="Cardis" index="10"]
+visible = false
+
+[node name="login" parent="Cardis" index="11"]
+visible = false
+
+[node name="Fusion" parent="Cardis" index="12"]
+visible = false
+
+[node name="fatihScene_top" parent="Cardis" index="14"]
+visible = false
+
+[node name="firstONE" parent="." instance=ExtResource("3_erx35")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16.755, 1, 7.22883)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.383, 1.895, 7.263)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.938011)
+visible = false
+material_override = SubResource("ShaderMaterial_t4ia7")
+mesh = SubResource("QuadMesh_28j4x")
+
+[node name="light" type="Node3D" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="light"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8248, 0)
+light_energy = 0.075
+omni_range = 14.0714
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="light"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7984, 2.85122, 7.3197)
+omni_range = 17.539
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="light"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85244, -5.61444)
+light_energy = 1.645
+omni_range = 14.0714
+
+[editable path="Cardis"]

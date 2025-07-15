@@ -1,0 +1,422 @@
+[gd_scene load_steps=20 format=3 uid="uid://c5gmvarioms50"]
+
+[ext_resource type="Script" path="res://BaseData/FPS/fps.gd" id="1_ocb5r"]
+[ext_resource type="Script" path="res://BaseData/FPS/camera_3d.gd" id="2_4l4tl"]
+[ext_resource type="PackedScene" uid="uid://bi6xman5rp042" path="res://GameData/3D/Weapon31/Weapon31.glb" id="2_140ap"]
+[ext_resource type="Script" path="res://BaseData/FPS/settings.gd" id="2_wftsh"]
+[ext_resource type="FontFile" uid="uid://bqmglpkfyr1mm" path="res://BaseData/Font/FreeSans.ttf" id="3_iw2cc"]
+[ext_resource type="Animation" uid="uid://muykq0grvak8" path="res://GameData/3D/Weapon31/shoot.res" id="3_mhu4k"]
+[ext_resource type="Shader" path="res://BaseData/Shaders/retroShader.gdshader" id="3_ogrqm"]
+[ext_resource type="Animation" uid="uid://duosjqxpw1fp1" path="res://GameData/3D/Weapon31/idl.res" id="4_iixwb"]
+[ext_resource type="Animation" uid="uid://bpaspphef1hyf" path="res://GameData/3D/Weapon31/idl_run.res" id="5_vliho"]
+[ext_resource type="Shader" path="res://BaseData/FPS/vhsShader.gdshader" id="6_140ap"]
+[ext_resource type="AudioStream" uid="uid://mhpy58f1snbu" path="res://GameData/Sounds/shoot.wav" id="7_arns0"]
+[ext_resource type="Script" path="res://BaseData/FPS/ui.gd" id="9_vi2m2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8hgvu"]
+radius = 0.4
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iixwb"]
+_data = {
+"idl": ExtResource("4_iixwb"),
+"idl_run": ExtResource("5_vliho"),
+"shoot": ExtResource("3_mhu4k")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_140ap"]
+shader = ExtResource("3_ogrqm")
+shader_parameter/color_bleed_enabled = true
+shader_parameter/chromatic_abberation_enabled = true
+shader_parameter/film_grain_enabled = true
+shader_parameter/sharpness_enabled = true
+shader_parameter/chromatic_abberation_seperation = 0.016
+shader_parameter/chromatic_abberation_intensity = 1.5
+shader_parameter/chromatic_abberation_blur_strength = 1.0
+shader_parameter/film_grain_intensity = 1.0
+shader_parameter/grain_size = 2.0
+shader_parameter/darkness_clamp = 0.28
+shader_parameter/sharpness_size = 1.0
+shader_parameter/sharpness_intensity = 0.7
+shader_parameter/color_bleed_seperation = 0.02
+shader_parameter/color_bleed_intensity = 0.2
+shader_parameter/anti_bleed_intensity = 1.8
+shader_parameter/color_bleed_blur_strength = 1.0
+shader_parameter/color_bleed_quality = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mhu4k"]
+shader = ExtResource("6_140ap")
+shader_parameter/vhs_resolution = Vector2(320, 240)
+shader_parameter/samples = 2
+shader_parameter/crease_noise = 1.0
+shader_parameter/crease_opacity = 0.5
+shader_parameter/filter_intensity = 0.1
+shader_parameter/tape_crease_smear = 0.2
+shader_parameter/tape_crease_intensity = 0.2
+shader_parameter/tape_crease_jitter = 0.1
+shader_parameter/tape_crease_speed = 0.5
+shader_parameter/tape_crease_discoloration = 1.0
+shader_parameter/bottom_border_thickness = 6.0
+shader_parameter/bottom_border_jitter = 6.0
+shader_parameter/noise_intensity = 0.1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wftsh"]
+bg_color = Color(0.0177324, 0.0177324, 0.0177324, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iw2cc"]
+bg_color = Color(0.197937, 0.197937, 0.197937, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_140ap"]
+bg_color = Color(0.490196, 0.12549, 0.615686, 0.611765)
+
+[node name="FPS" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00874, 0)
+script = ExtResource("1_ocb5r")
+
+[node name="HeadRay" type="RayCast3D" parent="."]
+target_position = Vector3(0, 2, 0)
+
+[node name="body" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_8hgvu")
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="head"]
+cull_mask = 1048573
+fov = 90.0
+
+[node name="aim" type="Panel" parent="head/Camera3D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="cursor" type="Panel" parent="head/Camera3D/aim"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FaceRay" type="RayCast3D" parent="head"]
+target_position = Vector3(0, 0, -2.25)
+collision_mask = 2
+
+[node name="GunRay" type="RayCast3D" parent="head"]
+target_position = Vector3(0, 0, -40)
+collision_mask = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="head"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="head/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1600, 900)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="head/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0032, 0)
+cull_mask = 2
+fov = 90.0
+script = ExtResource("2_4l4tl")
+
+[node name="Weapon31" parent="head/SubViewportContainer/SubViewport/Camera3D" instance=ExtResource("2_140ap")]
+transform = Transform3D(0.692029, 0, 0.0911073, 0, 0.698, 0, -0.0911073, 0, 0.692029, 1.07, -0.911, -1.327)
+
+[node name="Skeleton3D" parent="head/SubViewportContainer/SubViewport/Camera3D/Weapon31/Armature" index="0"]
+bones/0/position = Vector3(0, 0, 0)
+bones/0/rotation = Quaternion(0, 0, 0, 1)
+
+[node name="Cube" parent="head/SubViewportContainer/SubViewport/Camera3D/Weapon31/Armature/Skeleton3D" index="0"]
+layers = 2
+
+[node name="Cylinder" parent="head/SubViewportContainer/SubViewport/Camera3D/Weapon31/Armature/Skeleton3D" index="1"]
+layers = 2
+
+[node name="Anim" type="AnimationPlayer" parent="head/SubViewportContainer/SubViewport/Camera3D/Weapon31"]
+libraries = {
+"weapon31": SubResource("AnimationLibrary_iixwb")
+}
+
+[node name="gunSound" type="AudioStreamPlayer3D" parent="head/SubViewportContainer/SubViewport/Camera3D"]
+transform = Transform3D(0.991445, 0, 0.130526, 0, 1, 0, -0.130526, 0, 0.991445, 1.07, -0.911, -1.327)
+stream = ExtResource("7_arns0")
+volume_db = -25.0
+bus = &"Effect"
+
+[node name="shader0" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="shader0"]
+material = SubResource("ShaderMaterial_140ap")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="shader1" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="shader1"]
+material = SubResource("ShaderMaterial_mhu4k")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_vi2m2")
+
+[node name="settings" type="Window" parent="UI"]
+position = Vector2i(60, 36)
+size = Vector2i(830, 785)
+visible = false
+script = ExtResource("2_wftsh")
+
+[node name="BLACKHOLE" type="ScrollContainer" parent="UI/settings"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/settings/BLACKHOLE"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="sep" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wftsh")
+
+[node name="windowMode" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="WindowMode" type="Button" parent="UI/settings/BLACKHOLE/VBoxContainer/windowMode"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_iw2cc")
+theme_override_font_sizes/font_size = 45
+text = "Full Screen Mode"
+
+[node name="sep2" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wftsh")
+
+[node name="mouseSpeedtext" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_iw2cc")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_iw2cc")
+text = "Mouse Speed"
+horizontal_alignment = 1
+
+[node name="mouseSpeed" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="mousespeedSlider" type="HSlider" parent="UI/settings/BLACKHOLE/VBoxContainer/mouseSpeed"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 1.0
+step = 0.1
+value = 0.5
+
+[node name="sep3" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wftsh")
+
+[node name="MusicVolumeText" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_iw2cc")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_iw2cc")
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="MusicVolume" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="MusicVolumeSlider" type="HSlider" parent="UI/settings/BLACKHOLE/VBoxContainer/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -30.0
+max_value = 0.0
+
+[node name="sep4" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wftsh")
+
+[node name="EffectVolumeText" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_iw2cc")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_iw2cc")
+text = "Effect Volume"
+horizontal_alignment = 1
+
+[node name="EffectVolume" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="EffectVolumeSlider" type="HSlider" parent="UI/settings/BLACKHOLE/VBoxContainer/EffectVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -30.0
+max_value = 0.0
+
+[node name="sep5" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wftsh")
+
+[node name="EffectVolumeText2" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_iw2cc")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_iw2cc")
+text = "Atmosphere Volume"
+horizontal_alignment = 1
+
+[node name="AtmosphereVolume" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="AtmosphereVolumeSlider" type="HSlider" parent="UI/settings/BLACKHOLE/VBoxContainer/AtmosphereVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -30.0
+max_value = 0.0
+
+[node name="sep6" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wftsh")
+
+[node name="VoiceVolumeText" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_iw2cc")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_iw2cc")
+text = "Voice Volume"
+horizontal_alignment = 1
+
+[node name="VoiceVolume" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="VoiceVolumeSlider" type="HSlider" parent="UI/settings/BLACKHOLE/VBoxContainer/VoiceVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -30.0
+max_value = 0.0
+
+[node name="sep7" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wftsh")
+
+[node name="fovText" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_iw2cc")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_iw2cc")
+text = "FOV"
+horizontal_alignment = 1
+
+[node name="fov" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="fovSlider" type="HSlider" parent="UI/settings/BLACKHOLE/VBoxContainer/fov"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 30.0
+max_value = 120.0
+value = 90.0
+
+[node name="sep8" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wftsh")
+
+[node name="shadersText" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_iw2cc")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_iw2cc")
+text = "Shaders"
+horizontal_alignment = 1
+
+[node name="shader0" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="shader0Button" type="Button" parent="UI/settings/BLACKHOLE/VBoxContainer/shader0"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_iw2cc")
+theme_override_font_sizes/font_size = 25
+text = "Close Shader 0"
+
+[node name="shader1" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="shader1Button" type="Button" parent="UI/settings/BLACKHOLE/VBoxContainer/shader1"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_iw2cc")
+theme_override_font_sizes/font_size = 25
+text = "Close Shader 1"
+
+[node name="sep10" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wftsh")
+
+[node name="health" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 261.0
+offset_bottom = 30.0
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_iw2cc")
+theme_override_font_sizes/font_size = 60
+
+[node name="energy" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_140ap")
+
+[connection signal="close_requested" from="UI/settings" to="UI/settings" method="_on_close_requested"]
+[connection signal="pressed" from="UI/settings/BLACKHOLE/VBoxContainer/windowMode/WindowMode" to="UI/settings" method="_on_window_mode_pressed"]
+[connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/mouseSpeed/mousespeedSlider" to="UI/settings" method="_on_mousespeed_slider_value_changed"]
+[connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/MusicVolume/MusicVolumeSlider" to="UI/settings" method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/EffectVolume/EffectVolumeSlider" to="UI/settings" method="_on_effect_volume_slider_value_changed"]
+[connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/AtmosphereVolume/AtmosphereVolumeSlider" to="UI/settings" method="_on_atmosphere_volume_slider_value_changed"]
+[connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/VoiceVolume/VoiceVolumeSlider" to="UI/settings" method="_on_voice_volume_slider_value_changed"]
+[connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/fov/fovSlider" to="UI/settings" method="_on_fov_slider_value_changed"]
+[connection signal="pressed" from="UI/settings/BLACKHOLE/VBoxContainer/shader0/shader0Button" to="UI/settings" method="_on_shader_0_pressed"]
+[connection signal="pressed" from="UI/settings/BLACKHOLE/VBoxContainer/shader1/shader1Button" to="UI/settings" method="_on_shader_1_button_2_pressed"]
+
+[editable path="head/SubViewportContainer/SubViewport/Camera3D/Weapon31"]

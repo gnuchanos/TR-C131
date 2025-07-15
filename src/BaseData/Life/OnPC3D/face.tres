@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://h1x2u0lclgiv"]
+
+[ext_resource type="Texture2D" uid="uid://doalv3jkyo1og" path="res://BaseData/Life/OnPC3D/CubeChanPc_myFace.png" id="1_4m657"]
+
+[resource]
+resource_name = "face"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_4m657")

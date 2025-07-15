@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bmn6lsdtjf8gn"]
+
+[resource]
+resource_name = "head"
+cull_mode = 2
+albedo_color = Color(0.723973, 0.363947, 0.141115, 1)
+roughness = 0.5
+emission_enabled = true
+emission = Color(0.72549, 0.364706, 0.141176, 1)
+emission_energy_multiplier = 2.95

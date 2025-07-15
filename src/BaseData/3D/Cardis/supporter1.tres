@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cogj23umsol22"]
+
+[ext_resource type="Texture2D" uid="uid://b3hbrow06gp18" path="res://BaseData/3D/Cardis/Cardis_suporterslist1.png" id="1_txgqc"]
+
+[resource]
+resource_name = "supporter1"
+cull_mode = 2
+albedo_texture = ExtResource("1_txgqc")
+roughness = 0.5
+emission_enabled = true
+emission_texture = ExtResource("1_txgqc")

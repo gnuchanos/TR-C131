@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://1sui4400b4ea"]
+
+[ext_resource type="Texture2D" uid="uid://cumsjxxespnbk" path="res://BaseData/3D/Cardis/Cardis_notfinish.png" id="1_aijtc"]
+
+[resource]
+resource_name = "screen"
+cull_mode = 2
+albedo_texture = ExtResource("1_aijtc")
+roughness = 0.5
+emission_enabled = true
+emission_texture = ExtResource("1_aijtc")
