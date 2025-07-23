@@ -22,7 +22,7 @@ var PlayerFOV_MIN = 90
 
 var PlayerCurrentSpeed = 4
 var PlayerMinSpeed = 4
-var PlayerMaxSpeed = 6
+var PlayerMaxSpeed = 8
 
 var shader0 = true
 var shader1 = true

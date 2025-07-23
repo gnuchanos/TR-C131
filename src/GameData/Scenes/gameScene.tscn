@@ -1,23 +1,40 @@
-[gd_scene load_steps=13 format=3 uid="uid://48rsfxcmew3e"]
+[gd_scene load_steps=17 format=3 uid="uid://48rsfxcmew3e"]
 
 [ext_resource type="Script" path="res://GameData/Scripts/game_scene.gd" id="1_70c6n"]
 [ext_resource type="PackedScene" uid="uid://b1ugn81gamuu3" path="res://GameData/3D/GameScene/mainScene.glb" id="1_emsvy"]
 [ext_resource type="PackedScene" uid="uid://c5gmvarioms50" path="res://BaseData/FPS/FPS.tscn" id="2_i12d4"]
 [ext_resource type="Texture2D" uid="uid://dhm11of32pf4f" path="res://GameData/Image/skybox.jpg" id="2_khaln"]
+[ext_resource type="PackedScene" uid="uid://d4n1l22txsdtq" path="res://GameData/3D/GameScene/mainScene_collision.glb" id="3_i6ww1"]
+[ext_resource type="ArrayMesh" uid="uid://dyxljxeq3jinj" path="res://GameData/3D/GameScene/mainScene_nav_Circle_003.res" id="3_jymfw"]
 [ext_resource type="Script" path="res://addons/UniParticles3D/UniParticles3D.gd" id="5_7ho34"]
 [ext_resource type="PackedScene" uid="uid://brqg4acqnuqkl" path="res://GameData/NPC/Idiot6ArrowCap.tscn" id="5_h4ny3"]
 [ext_resource type="Texture2D" uid="uid://v72i014dtfuf" path="res://GameData/Image/purpleFire.png" id="6_wwj4v"]
 [ext_resource type="AudioStream" uid="uid://dwpf1a022egw6" path="res://GameData/Sounds/music0.mp3" id="8_g5yfj"]
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_jymfw"]
+vertices = PackedVector3Array(-32.8947, -0.253935, -12.8448, -22.6447, -0.253935, -12.5948, -22.6447, -0.253935, -13.0948, -31.3947, -0.00393534, -18.3448, -30.4197, -0.503935, -16.1198, -3.39471, -0.253935, -26.5948, -1.64471, -0.00393534, -38.0948, -18.6447, -0.00393534, -32.0948, -13.1447, -0.253935, -23.0948, -13.8746, -0.503935, -32.5928, -3.38469, -0.503935, -35.6088, -16.8945, -0.503935, -31.105, 12.3553, -0.253935, -25.5948, 13.3553, -0.253935, -24.8448, 13.3553, -0.253935, -36.0948, 0.105293, -0.253935, -27.3448, 1.08029, -0.503935, -35.6198, -28.9093, -0.503935, -19.0742, -18.4197, -0.503935, -29.6198, -1.91971, -0.503935, -29.6198, 18.1053, -0.00393534, -35.3448, 22.6053, -0.253935, -18.3448, 28.6053, -0.253935, -27.5948, 17.6003, -0.503935, -34.0978, 23.6053, -0.253935, -17.3448, 32.8553, -0.00393534, -24.5948, 29.3553, -0.253935, -5.59476, 40.8553, -0.253935, -5.59476, 40.8553, -0.00393534, -8.59476, 32.6254, -0.503935, -22.0929, 38.6261, -0.503935, -8.58363, -35.8947, -0.253935, -2.59476, -25.6447, -0.253935, -2.59476, 29.1053, -0.253935, 6.40524, 40.8553, -0.253935, 6.65524, -33.3947, -0.253935, 12.9052, -23.1447, -0.253935, 12.4052, -25.6447, -0.253935, 2.65524, -35.8947, -0.253935, 2.65524, 11.6053, -0.253935, 38.4052, 14.8553, -0.00393534, 38.1552, 16.6053, -0.00393534, 37.4052, 31.8553, -0.00393534, 27.1552, 22.8553, -0.253935, 19.4052, 11.6053, -0.253935, 26.9052, 30.7303, -0.503935, 26.1865, 16.1012, -0.503935, 36.4213, 40.6053, -0.00393534, 11.4052, 29.1053, -0.253935, 7.90524, 38.6006, -0.503935, 12.422, -23.1447, -0.253935, 13.1552, -32.1447, -0.00393534, 18.4052, -24.3947, -0.253935, 27.4052, -14.8947, -0.253935, 22.6552, -30.3745, -0.503935, 18.417, -13.8947, -0.253935, 23.6552, -20.1447, -0.00393534, 32.6552, -19.8746, -0.503935, 30.4071, -2.64471, -0.00393534, 39.6552, -1.89471, -0.253935, 28.4052, -7.87906, -0.503935, 36.4235, -18.3894, -0.503935, 31.8879, -3.37402, -0.503935, 36.4065, 8.10529, -0.253935, 27.6552, -0.409271, -0.503935, 37.9258)
+polygons = [PackedInt32Array(2, 4, 3), PackedInt32Array(3, 4, 0), PackedInt32Array(0, 4, 1), PackedInt32Array(1, 4, 2), PackedInt32Array(7, 11, 8), PackedInt32Array(8, 9, 5), PackedInt32Array(5, 10, 6), PackedInt32Array(6, 9, 7), PackedInt32Array(11, 9, 8), PackedInt32Array(7, 9, 11), PackedInt32Array(9, 10, 5), PackedInt32Array(10, 9, 6), PackedInt32Array(14, 13, 12), PackedInt32Array(14, 16, 6), PackedInt32Array(6, 16, 15), PackedInt32Array(15, 16, 12), PackedInt32Array(12, 16, 14), PackedInt32Array(3, 17, 2), PackedInt32Array(2, 17, 8), PackedInt32Array(8, 18, 7), PackedInt32Array(7, 17, 3), PackedInt32Array(17, 18, 8), PackedInt32Array(18, 17, 7), PackedInt32Array(15, 19, 6), PackedInt32Array(6, 19, 5), PackedInt32Array(5, 19, 15), PackedInt32Array(21, 13, 22), PackedInt32Array(22, 23, 20), PackedInt32Array(20, 23, 14), PackedInt32Array(14, 23, 13), PackedInt32Array(13, 23, 22), PackedInt32Array(24, 21, 22), PackedInt32Array(27, 30, 28), PackedInt32Array(28, 29, 25), PackedInt32Array(25, 29, 22), PackedInt32Array(22, 29, 24), PackedInt32Array(24, 29, 26), PackedInt32Array(26, 30, 27), PackedInt32Array(30, 29, 28), PackedInt32Array(29, 30, 26), PackedInt32Array(1, 32, 0), PackedInt32Array(0, 32, 31), PackedInt32Array(26, 27, 33), PackedInt32Array(33, 27, 34), PackedInt32Array(36, 35, 37), PackedInt32Array(37, 35, 38), PackedInt32Array(43, 46, 44), PackedInt32Array(44, 46, 39), PackedInt32Array(39, 46, 40), PackedInt32Array(40, 46, 41), PackedInt32Array(41, 45, 42), PackedInt32Array(45, 46, 43), PackedInt32Array(46, 45, 41), PackedInt32Array(45, 49, 42), PackedInt32Array(42, 49, 47), PackedInt32Array(47, 49, 34), PackedInt32Array(34, 49, 48), PackedInt32Array(48, 49, 43), PackedInt32Array(43, 49, 45), PackedInt32Array(48, 33, 34), PackedInt32Array(35, 36, 50), PackedInt32Array(52, 50, 53), PackedInt32Array(50, 54, 35), PackedInt32Array(35, 54, 51), PackedInt32Array(51, 54, 52), PackedInt32Array(52, 54, 50), PackedInt32Array(52, 57, 56), PackedInt32Array(56, 57, 55), PackedInt32Array(55, 57, 53), PackedInt32Array(53, 57, 52), PackedInt32Array(59, 60, 55), PackedInt32Array(55, 61, 56), PackedInt32Array(56, 60, 58), PackedInt32Array(58, 62, 59), PackedInt32Array(60, 61, 55), PackedInt32Array(59, 62, 60), PackedInt32Array(61, 60, 56), PackedInt32Array(60, 62, 58), PackedInt32Array(63, 44, 39), PackedInt32Array(63, 64, 59), PackedInt32Array(59, 64, 58), PackedInt32Array(58, 64, 39), PackedInt32Array(39, 64, 63)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pst05"]
+resource_name = "collision"
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.905882, 0.905882, 0.905882, 0)
+roughness = 0.5
+
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_70c6n"]
 panorama = ExtResource("2_khaln")
+energy_multiplier = 0.1
 
 [sub_resource type="Sky" id="Sky_h4ny3"]
 sky_material = SubResource("PanoramaSkyMaterial_70c6n")
 
 [sub_resource type="Environment" id="Environment_i12d4"]
 background_mode = 2
+background_energy_multiplier = 0.5
 sky = SubResource("Sky_h4ny3")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
 tonemap_mode = 3
 ssil_enabled = true
 glow_enabled = true
@@ -36,6 +53,16 @@ script = ExtResource("1_70c6n")
 
 [node name="mainScene" parent="." instance=ExtResource("1_emsvy")]
 
+[node name="mainScene_collision" parent="." instance=ExtResource("3_i6ww1")]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_jymfw")
+
+[node name="MainSceneNav" type="MeshInstance3D" parent="NavigationRegion3D"]
+material_override = SubResource("StandardMaterial3D_pst05")
+mesh = ExtResource("3_jymfw")
+skeleton = NodePath("../..")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_i12d4")
 
@@ -46,42 +73,50 @@ transform = Transform3D(-0.989925, 0, -0.141592, 0, 1, 0, 0.141592, 0, -0.989925
 
 [node name="OmniLight3D" type="OmniLight3D" parent="light"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.39238, 34.0632)
-light_energy = 5.114
+layers = 3
+light_energy = 0.1
 omni_range = 41.085
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="light"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.6282, 4.39238, 21.153)
-light_energy = 5.114
+layers = 3
+light_energy = 0.1
 omni_range = 41.085
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="light"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.2799, 4.39238, -3.0617)
-light_energy = 5.114
+layers = 3
+light_energy = 0.1
 omni_range = 41.085
 
 [node name="OmniLight3D4" type="OmniLight3D" parent="light"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.872, 4.39238, -25.3749)
-light_energy = 5.114
+layers = 3
+light_energy = 0.1
 omni_range = 41.085
 
 [node name="OmniLight3D5" type="OmniLight3D" parent="light"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.09008, 4.39238, -32.9979)
-light_energy = 5.114
+layers = 3
+light_energy = 0.1
 omni_range = 41.085
 
 [node name="OmniLight3D6" type="OmniLight3D" parent="light"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5693, 4.39238, -27.4721)
-light_energy = 5.114
+layers = 3
+light_energy = 0.1
 omni_range = 41.085
 
 [node name="OmniLight3D7" type="OmniLight3D" parent="light"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5693, 4.39238, -6.47212)
-light_energy = 5.114
+layers = 3
+light_energy = 0.1
 omni_range = 41.085
 
 [node name="OmniLight3D8" type="OmniLight3D" parent="light"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.6843, 4.39238, 23.2583)
-light_energy = 5.114
+layers = 3
+light_energy = 0.1
 omni_range = 41.085
 
 [node name="FinishArea" type="Area3D" parent="."]
@@ -105,56 +140,58 @@ arc_mode = 3
 enable_rendering = Vector2i(1, 1)
 particle_texture = ExtResource("6_wwj4v")
 
-[node name="Idiot6ArrowCap" parent="." instance=ExtResource("5_h4ny3")]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -14.189, 0.00570416, -28.2081)
-
-[node name="Idiot6ArrowCap14" parent="." instance=ExtResource("5_h4ny3")]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -20.4373, 0.00570416, -22.9856)
-
-[node name="Idiot6ArrowCap15" parent="." instance=ExtResource("5_h4ny3")]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -25.9219, 0.00570368, -17.07)
-
-[node name="Idiot6ArrowCap2" parent="." instance=ExtResource("5_h4ny3")]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -7.39737, 0.00570416, -31.6454)
-
-[node name="Idiot6ArrowCap3" parent="." instance=ExtResource("5_h4ny3")]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 0.814388, 0.00570416, -31.6454)
-
-[node name="Idiot6ArrowCap4" parent="." instance=ExtResource("5_h4ny3")]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 9.63728, 0.00570416, -31.2267)
-
-[node name="Idiot6ArrowCap5" parent="." instance=ExtResource("5_h4ny3")]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 19.5464, 0.00570416, -25.9132)
-
-[node name="Idiot6ArrowCap6" parent="." instance=ExtResource("5_h4ny3")]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 31.3939, 0.00570416, -16.554)
-
-[node name="Idiot6ArrowCap7" parent="." instance=ExtResource("5_h4ny3")]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 34.8734, 0.00570416, -2.4789)
-
-[node name="Idiot6ArrowCap8" parent="." instance=ExtResource("5_h4ny3")]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 33.3626, 0.00570416, 8.08239)
-
-[node name="Idiot6ArrowCap9" parent="." instance=ExtResource("5_h4ny3")]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 28.3869, 0.00570416, 21.1384)
-
-[node name="Idiot6ArrowCap10" parent="." instance=ExtResource("5_h4ny3")]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 17.9241, 0.00570416, 30.2366)
-
-[node name="Idiot6ArrowCap11" parent="." instance=ExtResource("5_h4ny3")]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 7.68571, 0.00570416, 33.0768)
-
-[node name="Idiot6ArrowCap12" parent="." instance=ExtResource("5_h4ny3")]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -4.61567, 0.00570416, 31.9873)
-
-[node name="Idiot6ArrowCap13" parent="." instance=ExtResource("5_h4ny3")]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -17.6627, 0.00570416, 27.0684)
-
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_g5yfj")
 volume_db = -20.0
 autoplay = true
 bus = &"Music"
+
+[node name="npc" type="Node3D" parent="."]
+
+[node name="Idiot6ArrowCap" parent="npc" instance=ExtResource("5_h4ny3")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -14.189, 0.00570416, -28.2081)
+
+[node name="Idiot6ArrowCap14" parent="npc" instance=ExtResource("5_h4ny3")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -20.4373, 0.00570416, -22.9856)
+
+[node name="Idiot6ArrowCap15" parent="npc" instance=ExtResource("5_h4ny3")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -25.9219, 0.00570368, -17.07)
+
+[node name="Idiot6ArrowCap2" parent="npc" instance=ExtResource("5_h4ny3")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -7.39737, 0.00570416, -31.6454)
+
+[node name="Idiot6ArrowCap3" parent="npc" instance=ExtResource("5_h4ny3")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 0.814388, 0.00570416, -31.6454)
+
+[node name="Idiot6ArrowCap4" parent="npc" instance=ExtResource("5_h4ny3")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 9.63728, 0.00570416, -31.2267)
+
+[node name="Idiot6ArrowCap5" parent="npc" instance=ExtResource("5_h4ny3")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 19.5464, 0.00570416, -25.9132)
+
+[node name="Idiot6ArrowCap6" parent="npc" instance=ExtResource("5_h4ny3")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 31.3939, 0.00570416, -16.554)
+
+[node name="Idiot6ArrowCap7" parent="npc" instance=ExtResource("5_h4ny3")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 34.8734, 0.00570416, -2.4789)
+
+[node name="Idiot6ArrowCap8" parent="npc" instance=ExtResource("5_h4ny3")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 33.3626, 0.00570416, 8.08239)
+
+[node name="Idiot6ArrowCap9" parent="npc" instance=ExtResource("5_h4ny3")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 28.3869, 0.00570416, 21.1384)
+
+[node name="Idiot6ArrowCap10" parent="npc" instance=ExtResource("5_h4ny3")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 17.9241, 0.00570416, 30.2366)
+
+[node name="Idiot6ArrowCap11" parent="npc" instance=ExtResource("5_h4ny3")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 7.68571, 0.00570416, 33.0768)
+
+[node name="Idiot6ArrowCap12" parent="npc" instance=ExtResource("5_h4ny3")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -4.61567, 0.00570416, 31.9873)
+
+[node name="Idiot6ArrowCap13" parent="npc" instance=ExtResource("5_h4ny3")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -17.6627, 0.00570416, 27.0684)
 
 [connection signal="body_entered" from="FinishArea" to="." method="_on_finish_area_body_entered"]
 [connection signal="body_exited" from="FinishArea" to="." method="_on_finish_area_body_exited"]

@@ -569,7 +569,7 @@ var texture_sheet_enabled: bool:
 ## Curve controlling frame progression over particle lifetime
 @export var frame_over_time: Curve
 
-# !@ Rendering! (particle_texture,tint_color,billboard_mode,velocity_stretch,length_stretch,align_to_velocity,blend_mode,override_material,custom_mesh,render_priority,sampling_filter)
+# !@ Rendering! (particle_texture,tint_color,billboard_mode,velocity_stretch,length_stretch,align_to_velocity,blend_mode,override_material,custom_mesh,render_priority,sampling_filter,rendering_layer)
 @export var enable_rendering: Vector2i = Vector2i.ZERO
 
 ## Texture to use for each particle
@@ -611,6 +611,11 @@ var texture_sheet_enabled: bool:
 	set(value):
 		sampling_filter = value if value is SamplingFilter else SamplingFilter.Linear
 		_material_dirty = true
+
+@export_flags_3d_render var rendering_layer:int = 1:
+	set(value):
+		rendering_layer = value if value is int else 1
+		_core_params_dirty = true
 
 ## Use override material
 @export var override_material: Material = null:
@@ -790,7 +795,6 @@ func _create_shared_quad_mesh() -> RID:
 	return _shared_quad_mesh
 
 func _create_multimesh() -> void:
-	print("Called creating multimesh")
 	# Cleanup existing multimesh if any
 	if _multimesh != RID():
 		if _instance != RID():
@@ -844,7 +848,9 @@ func _create_multimesh() -> void:
 	if shared_material:
 		_shared_material = _create_material()
 		RenderingServer.instance_geometry_set_material_override(_instance, _shared_material)
-
+	
+	RenderingServer.instance_set_layer_mask(_instance, rendering_layer)
+	
 	# Kill any particles that exceed the new max_particles
 	while _particles.size() > max_particles:
 		_particles.pop_back().kill()

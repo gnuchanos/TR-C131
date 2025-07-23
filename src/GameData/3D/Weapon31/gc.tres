@@ -5,6 +5,8 @@
 [resource]
 resource_name = "gc"
 cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
 albedo_texture = ExtResource("1_f3xdo")
-roughness = 0.5
+metallic_specular = 1.0
 texture_filter = 2
