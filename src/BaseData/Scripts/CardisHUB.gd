@@ -29,10 +29,6 @@ var talkenglishsound = preload("res://BaseData/Sound/talk_english.wav")
 func _ready() -> void:
 	$Cardis/centerObject/CenterAnim.play("loop")
 	GlobalVAR.PlayerCanJump = false
-	if GlobalVAR.lang == "turkish":
-		talk.stream = talkTurkishSound
-	elif GlobalVAR.lang == "english":
-		talk.stream = talkenglishsound
 	talk.play()
 
 func _process(delta: float) -> void:
@@ -53,9 +49,6 @@ func _process(delta: float) -> void:
 
 	_3DMapRotate.rotate_y(0.1 * delta)
 	EnergyRotate.rotate_y(-1 * delta)
-
-	if not InsideSoumd.playing:
-		InsideSoumd.play()
 
 	if not talk.playing:
 		talkFinish = true

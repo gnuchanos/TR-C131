@@ -83,10 +83,11 @@ func _physics_process(delta):
 	move_and_slide()
 
 func apply_damage(amount):
-	bodyAnimation.play("idl_GetHit")
-	_6ArrowAnimation.play("idl_GetHit")
+	if not TargetInArea:
+		bodyAnimation.play("idl_GetHit")
+		_6ArrowAnimation.play("idl_GetHit")
+		$ugh.play()
 	current_health -= amount
-	Wait = 0.5
 
 func _on_idiot_area_body_entered(body):
 	if body.name == "FPS":

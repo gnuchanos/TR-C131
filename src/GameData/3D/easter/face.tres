@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://drvm2tu212sxg"]
+
+[ext_resource type="Texture2D" uid="uid://jsy0hptx318t" path="res://GameData/3D/easter/future.png" id="1_hfug2"]
+
+[resource]
+resource_name = "face"
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_hfug2")
+emission_enabled = true
+emission_texture = ExtResource("1_hfug2")

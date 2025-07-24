@@ -26,16 +26,27 @@ var attack_damage = 25
 ]
 
 var waitWeapon = 0
+var easterEggAreaEnter = false
+
+@onready var music = $music
+@onready var easter = $easterArea/easter
+@onready var ambiance = $ambiance
 
 func _ready() -> void:
 	GlobalVAR.PlayerHandReady = true
 	GlobalVAR.PlayerCanJump   = true
-	if GlobalVAR.PlayerHandReady:
-		$FPS/head/SubViewportContainer/SubViewport/Camera3D/Weapon31.show()
 
 	for i in IdiotsList:
 		i.stop()
-	
+
+	$easterYO/anim.play("idle")
+
+	if not GlobalVAR.PlayerHandReady:
+		$FPS/head/SubViewportContainer/SubViewport/Camera3D/Weapon31.hide()
+		$FPS/head/SubViewportContainer/SubViewport/Camera3D/flashLight.hide()
+	else:
+		$FPS/head/SubViewportContainer/SubViewport/Camera3D/Weapon31.show()
+		$FPS/head/SubViewportContainer/SubViewport/Camera3D/flashLight.show()
 
 func _process(delta):
 	if waitWeapon > 0:
@@ -46,10 +57,7 @@ func _process(delta):
 				var hit = raycast.get_collider()
 				if hit and hit.has_method("apply_damage"):
 					hit.apply_damage(attack_damage)
-			waitWeapon = 0.5
-
-	if not $music.playing:
-		$music.play()
+			waitWeapon = 0.7
 
 	if AreaEnter:
 		if nextLevelTimer > 0:
@@ -61,6 +69,24 @@ func _process(delta):
 		get_tree().change_scene_to_file("res://GameData/Scenes/gameScene.tscn")
 		GlobalVAR.PlayerHealth = 100
 
+	if easterEggAreaEnter:
+		if not easter.playing:
+			easter.play()
+		music.stop()
+		ambiance.stop()
+	else:
+		if not GlobalVAR.disableMusic:
+			if not music.playing:
+				music.play()
+		else:
+			music.stop()
+
+		if not ambiance.playing:
+			ambiance.play()
+		easter.stop()
+
+	$WorldEnvironment.environment.sky_rotation.y -= 0.05 * delta
+
 func _on_finish_area_body_entered(body: Node3D) -> void:
 	if body.name == "FPS":
 		AreaEnter = true
@@ -69,3 +95,11 @@ func _on_finish_area_body_exited(body: Node3D) -> void:
 	if body.name == "FPS":
 		AreaEnter = false
 		$FPS/energy.visible = false
+
+
+func _on_easter_area_body_entered(body: Node3D) -> void:
+	if body.name == "FPS":
+		easterEggAreaEnter = true
+func _on_easter_area_body_exited(body: Node3D) -> void:
+	if body.name == "FPS":
+		easterEggAreaEnter = false

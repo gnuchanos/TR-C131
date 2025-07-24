@@ -18,21 +18,37 @@ const  CrawlingOrDuckingSpeed: int = 5
 
 var waitWeapon = 0
 
-@onready var fireParticle = $head/SubViewportContainer/SubViewport/Camera3D/Weapon31/Armature/Skeleton3D/BoneAttachment3D_/fire
-@onready var firelight = $head/SubViewportContainer/SubViewport/Camera3D/Weapon31/Armature/Skeleton3D/BoneAttachment3D_/fire/flight
+@onready var fireParticle = $head/SubViewportContainer/SubViewport/Camera3D/Weapon31/BoneAttachment3D_/fire
+@onready var firelight = $head/SubViewportContainer/SubViewport/Camera3D/Weapon31/BoneAttachment3D_/fire/flight
 var waitpartical = 0.1
 
 var light = load("res://GameData/3D/GameScene/light.tres")
 var readyfireDefault = 0.1
 var readyfire = readyfireDefault
 
+@onready var gunAnim = $head/SubViewportContainer/SubViewport/Camera3D/Weapon31/AnimationPlayer
+@onready var flashLightAnim = $head/SubViewportContainer/SubViewport/Camera3D/flashLight/AnimationPlayer
+@onready var gunSound = $head/SubViewportContainer/SubViewport/Camera3D/gunSound
+
 
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 	if not GlobalVAR.PlayerHandReady:
 		$head/SubViewportContainer/SubViewport/Camera3D/Weapon31.hide()
+		$head/SubViewportContainer/SubViewport/Camera3D/flashLight.hide()
+	else:
+		$head/SubViewportContainer/SubViewport/Camera3D/Weapon31.show()
+		$head/SubViewportContainer/SubViewport/Camera3D/flashLight.show()
+
 	light.emission_enabled = false
+
+	gunAnim.get_animation("idl_run").loop = true
+	gunAnim.get_animation("idl").loop = true
+	flashLightAnim.get_animation("idle").loop = true
+	flashLightAnim.get_animation("idle_run").loop = true
+
 
 func _input(event):
 	if GlobalVAR.PlayerCanMove and not GlobalVAR.PlayerLookingConsole and not GlobalVAR.PlayerLookingSettings:
@@ -58,9 +74,15 @@ func _process(_delta: float) -> void:
 	$shader0.visible = GlobalVAR.shader0
 	$shader1.visible = GlobalVAR.shader1
 
+
+
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+
+	if Input.is_action_pressed("1"):
+		gunAnim.play("idl_run")
+
 
 	if GlobalVAR.PlayerCanMove and not GlobalVAR.PlayerLookingConsole and not GlobalVAR.PlayerLookingSettings:
 		# duck duck mother ducker
@@ -90,58 +112,57 @@ func _physics_process(delta: float) -> void:
 				body.shape.height = clamp(body.shape.height, bodyDuck, bodyMaxHeight)
 
 				# if you running you can't zoom
-				if not Input.is_action_just_pressed("rightM"):
-					if Input.is_action_pressed("run"):
-						GlobalVAR.PlayerCurrentSpeed += 80 * delta
-						GlobalVAR.PlayerJump_Height_Current += 100 * delta
+				if Input.is_action_pressed("run") and Input.is_action_pressed('w'):
+					GlobalVAR.PlayerCurrentSpeed += 80 * delta
+					GlobalVAR.PlayerJump_Height_Current += 100 * delta
 
-						if Input.is_action_pressed('w'):
-							GlobalVAR.PlayerFOV_Current  += 80 * delta
-							$head/SubViewportContainer/SubViewport/Camera3D/Weapon31/AnimationPlayer.play("idl_run")
-							$head/SubViewportContainer/SubViewport/Camera3D/flashLight/AnimationPlayer.play("idle_run")
+					GlobalVAR.PlayerFOV_Current  += 80 * delta
+					if not Input.is_action_pressed("leftM"):
+						gunAnim.play("idl_run")
+						flashLightAnim.play("idle_run")
 
-						fireParticle.clear()
-						fireParticle.stop()
+				else:
+					GlobalVAR.PlayerCurrentSpeed -= 100 * delta
+					GlobalVAR.PlayerFOV_Current  -= 100 * delta
+					GlobalVAR.PlayerJump_Height_Current -= 100 * delta
+
+					if waitWeapon > 0:
+						waitWeapon -= delta
+
+						if waitpartical > 0:
+							waitpartical -= delta
+						else:
+							fireParticle.clear()
+							fireParticle.stop()
+							firelight.visible = false
+							readyfire = readyfireDefault
 
 					else:
-						GlobalVAR.PlayerCurrentSpeed -= 100 * delta
-						GlobalVAR.PlayerFOV_Current  -= 100 * delta
-						GlobalVAR.PlayerJump_Height_Current -= 100 * delta
+						if Input.is_action_pressed("leftM"):
+							if GlobalVAR.PlayerHandReady:
+								if readyfire > 0:
+									readyfire -= delta
+								else:
+									gunAnim.play("shoot")
+									if not gunSound.playing:
+										gunSound.play()
 
-					GlobalVAR.PlayerJump_Height_Current = clamp(GlobalVAR.PlayerJump_Height_Current, GlobalVAR.PlayerJump_Height_Min, GlobalVAR.PlayerJump_Height_Max)
-				# base running speed min and max
-				GlobalVAR.PlayerCurrentSpeed = clamp(GlobalVAR.PlayerCurrentSpeed, GlobalVAR.PlayerMinSpeed, GlobalVAR.PlayerMaxSpeed)
+									waitWeapon = 0.5
+									waitpartical = 0.25
 
-		if not Input.is_action_pressed("run"):
-			if waitWeapon > 0:
-				waitWeapon -= delta
+									fireParticle.play()
+									firelight.visible = true
 
-				if waitpartical > 0:
-					waitpartical -= delta
-				else:
-					fireParticle.clear()
-					fireParticle.stop()
-					firelight.visible = false
-					readyfire = readyfireDefault
-
-			else:
-				$head/SubViewportContainer/SubViewport/Camera3D/Weapon31/AnimationPlayer.play("idl")
-				$head/SubViewportContainer/SubViewport/Camera3D/flashLight/AnimationPlayer.play("idle")
-
-				if Input.is_action_pressed("leftM"):
-					if GlobalVAR.PlayerHandReady:
-						if readyfire > 0:
-							readyfire -= delta
 						else:
-							$head/SubViewportContainer/SubViewport/Camera3D/Weapon31/AnimationPlayer.play("shoot")
-							if not $head/SubViewportContainer/SubViewport/Camera3D/gunSound.playing:
-								$head/SubViewportContainer/SubViewport/Camera3D/gunSound.play()
+							gunAnim.play("idl")
+							flashLightAnim.play("idle")
 
-							waitWeapon = 0.5
-							waitpartical = 0.25
+		GlobalVAR.PlayerJump_Height_Current = clamp(GlobalVAR.PlayerJump_Height_Current, GlobalVAR.PlayerJump_Height_Min, GlobalVAR.PlayerJump_Height_Max)
 
-							fireParticle.play()
-							firelight.visible = true
+		# base running speed min and max
+		GlobalVAR.PlayerCurrentSpeed = clamp(GlobalVAR.PlayerCurrentSpeed, GlobalVAR.PlayerMinSpeed, GlobalVAR.PlayerMaxSpeed)
+
+
 
 		if Input.is_action_just_pressed("space") and is_on_floor() and GlobalVAR.PlayerCanJump:
 			velocity.y = GlobalVAR.PlayerJump_Height_Current

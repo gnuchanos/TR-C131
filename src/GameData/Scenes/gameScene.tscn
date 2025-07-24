@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://48rsfxcmew3e"]
+[gd_scene load_steps=24 format=3 uid="uid://48rsfxcmew3e"]
 
 [ext_resource type="Script" path="res://GameData/Scripts/game_scene.gd" id="1_70c6n"]
 [ext_resource type="PackedScene" uid="uid://b1ugn81gamuu3" path="res://GameData/3D/GameScene/mainScene.glb" id="1_emsvy"]
@@ -10,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://brqg4acqnuqkl" path="res://GameData/NPC/Idiot6ArrowCap.tscn" id="5_h4ny3"]
 [ext_resource type="Texture2D" uid="uid://v72i014dtfuf" path="res://GameData/Image/purpleFire.png" id="6_wwj4v"]
 [ext_resource type="AudioStream" uid="uid://dwpf1a022egw6" path="res://GameData/Sounds/music0.mp3" id="8_g5yfj"]
+[ext_resource type="PackedScene" uid="uid://c0clit5bgqja5" path="res://GameData/3D/easter/easter_yo.tscn" id="11_i6ww1"]
+[ext_resource type="AudioStream" uid="uid://djrosdcwmreip" path="res://GameData/Sounds/hell.ogg" id="12_f1ikf"]
+[ext_resource type="AudioStream" uid="uid://w8y22uvtbcst" path="res://GameData/Sounds/ambiance_level0_who.ogg" id="13_yw8u6"]
+[ext_resource type="PackedScene" uid="uid://jp04yjf4d1qy" path="res://GameData/3D/easter/easter_c131.glb" id="14_ye0sk"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_jymfw"]
 vertices = PackedVector3Array(-32.8947, -0.253935, -12.8448, -22.6447, -0.253935, -12.5948, -22.6447, -0.253935, -13.0948, -31.3947, -0.00393534, -18.3448, -30.4197, -0.503935, -16.1198, -3.39471, -0.253935, -26.5948, -1.64471, -0.00393534, -38.0948, -18.6447, -0.00393534, -32.0948, -13.1447, -0.253935, -23.0948, -13.8746, -0.503935, -32.5928, -3.38469, -0.503935, -35.6088, -16.8945, -0.503935, -31.105, 12.3553, -0.253935, -25.5948, 13.3553, -0.253935, -24.8448, 13.3553, -0.253935, -36.0948, 0.105293, -0.253935, -27.3448, 1.08029, -0.503935, -35.6198, -28.9093, -0.503935, -19.0742, -18.4197, -0.503935, -29.6198, -1.91971, -0.503935, -29.6198, 18.1053, -0.00393534, -35.3448, 22.6053, -0.253935, -18.3448, 28.6053, -0.253935, -27.5948, 17.6003, -0.503935, -34.0978, 23.6053, -0.253935, -17.3448, 32.8553, -0.00393534, -24.5948, 29.3553, -0.253935, -5.59476, 40.8553, -0.253935, -5.59476, 40.8553, -0.00393534, -8.59476, 32.6254, -0.503935, -22.0929, 38.6261, -0.503935, -8.58363, -35.8947, -0.253935, -2.59476, -25.6447, -0.253935, -2.59476, 29.1053, -0.253935, 6.40524, 40.8553, -0.253935, 6.65524, -33.3947, -0.253935, 12.9052, -23.1447, -0.253935, 12.4052, -25.6447, -0.253935, 2.65524, -35.8947, -0.253935, 2.65524, 11.6053, -0.253935, 38.4052, 14.8553, -0.00393534, 38.1552, 16.6053, -0.00393534, 37.4052, 31.8553, -0.00393534, 27.1552, 22.8553, -0.253935, 19.4052, 11.6053, -0.253935, 26.9052, 30.7303, -0.503935, 26.1865, 16.1012, -0.503935, 36.4213, 40.6053, -0.00393534, 11.4052, 29.1053, -0.253935, 7.90524, 38.6006, -0.503935, 12.422, -23.1447, -0.253935, 13.1552, -32.1447, -0.00393534, 18.4052, -24.3947, -0.253935, 27.4052, -14.8947, -0.253935, 22.6552, -30.3745, -0.503935, 18.417, -13.8947, -0.253935, 23.6552, -20.1447, -0.00393534, 32.6552, -19.8746, -0.503935, 30.4071, -2.64471, -0.00393534, 39.6552, -1.89471, -0.253935, 28.4052, -7.87906, -0.503935, 36.4235, -18.3894, -0.503935, 31.8879, -3.37402, -0.503935, 36.4065, 8.10529, -0.253935, 27.6552, -0.409271, -0.503935, 37.9258)
@@ -47,6 +51,43 @@ fog_density = 0.011
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_khaln"]
 height = 18.5956
 radius = 2.01251
+
+[sub_resource type="Animation" id="Animation_i6ww1"]
+resource_name = "idle"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-71.9297, 0, 8.26237), Vector3(-71.9297, -0.689502, 8.26237), Vector3(-71.9297, 0, 8.26237)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.06667, 2.5, 3.83333, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0872665, 0, 0.0331613), Vector3(-6.98549e-09, 1.0949e-09, -0.0769167), Vector3(0.0872665, 0, 0.0366519), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f1ikf"]
+_data = {
+"idle": SubResource("Animation_i6ww1")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i6ww1"]
+size = Vector3(18.0114, 11, 30.1951)
 
 [node name="GameScene" type="Node3D"]
 script = ExtResource("1_70c6n")
@@ -142,7 +183,7 @@ particle_texture = ExtResource("6_wwj4v")
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_g5yfj")
-volume_db = -20.0
+volume_db = -30.0
 autoplay = true
 bus = &"Music"
 
@@ -193,5 +234,39 @@ transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -4.61567
 [node name="Idiot6ArrowCap13" parent="npc" instance=ExtResource("5_h4ny3")]
 transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -17.6627, 0.00570416, 27.0684)
 
+[node name="easterYO" parent="." instance=ExtResource("11_i6ww1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.9297, 0, 8.26237)
+
+[node name="anim" type="AnimationPlayer" parent="easterYO"]
+libraries = {
+"": SubResource("AnimationLibrary_f1ikf")
+}
+
+[node name="easterArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="easterArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.83233, 5.42957, 6.44698)
+shape = SubResource("BoxShape3D_i6ww1")
+
+[node name="easter" type="AudioStreamPlayer3D" parent="easterArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.69675, 9.58371)
+stream = ExtResource("12_f1ikf")
+volume_db = -30.0
+bus = &"Atmosphere"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="easterArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2145, 0.975222, 6.15424)
+light_energy = 0.06
+
+[node name="ambiance" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("13_yw8u6")
+volume_db = -15.0
+bus = &"Atmosphere"
+
+[node name="easter_c131" parent="." instance=ExtResource("14_ye0sk")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.84218, -0.854469, 7)
+
 [connection signal="body_entered" from="FinishArea" to="." method="_on_finish_area_body_entered"]
 [connection signal="body_exited" from="FinishArea" to="." method="_on_finish_area_body_exited"]
+[connection signal="body_entered" from="easterArea" to="." method="_on_easter_area_body_entered"]
+[connection signal="body_exited" from="easterArea" to="." method="_on_easter_area_body_exited"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0clit5bgqja5"]
+
+[ext_resource type="Script" path="res://GameData/3D/easter/easter_yo.gd" id="1_8y7aq"]
+[ext_resource type="PackedScene" uid="uid://cyyu6vrv3rvw8" path="res://GameData/3D/easter/Cardis_portable.glb" id="1_nc5c0"]
+[ext_resource type="PackedScene" uid="uid://bgjhq3c4r6avx" path="res://GameData/3D/easter/CubeChan.glb" id="2_8y7aq"]
+
+[node name="easterYO" type="Node3D"]
+script = ExtResource("1_8y7aq")
+
+[node name="Cardis_portable" parent="." instance=ExtResource("1_nc5c0")]
+transform = Transform3D(-5.61722e-08, 0, 1.28507, 0, 1.28507, 0, -1.28507, 0, -5.61722e-08, 0, 0, 0)
+
+[node name="CubeChan2" parent="." instance=ExtResource("2_8y7aq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.191906, 0.333113, 0)

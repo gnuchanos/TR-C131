@@ -28,3 +28,5 @@ var shader0 = true
 var shader1 = true
 
 var MouseSpeed = 0.5
+
+var disableMusic = false

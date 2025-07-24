@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://brqg4acqnuqkl"]
+[gd_scene load_steps=16 format=3 uid="uid://brqg4acqnuqkl"]
 
 [ext_resource type="Script" path="res://GameData/NPC/idiot_6_arrow_cap.gd" id="1_5uxt1"]
 [ext_resource type="PackedScene" uid="uid://cag47cfeu1s5v" path="res://GameData/3D/6ArrowIdiot/6ArrowIdiot.glb" id="1_c7bfx"]
+[ext_resource type="AudioStream" uid="uid://cq1yhf2f6jn3p" path="res://GameData/Sounds/ugh.ogg" id="2_xqrbo"]
 [ext_resource type="PackedScene" uid="uid://bl6tjrufmb73d" path="res://GameData/3D/6ArrowIdiot/6ArrowIdiot_6arrow.glb" id="6_46gg4"]
 [ext_resource type="AudioStream" uid="uid://btbtcmpf6umfq" path="res://GameData/Sounds/hulo.wav" id="6_xw82f"]
 [ext_resource type="AudioStream" uid="uid://3y5d6sxkqkqa" path="res://GameData/Sounds/DIE.wav" id="7_mg3wa"]
@@ -57,13 +58,17 @@ shape = SubResource("CylinderShape3D_c7bfx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FightArea"]
 shape = SubResource("CylinderShape3D_uv5px")
 
+[node name="ugh" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_xqrbo")
+bus = &"Voice"
+
 [node name="hit" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_xw82f")
-bus = &"Effect"
+bus = &"Voice"
 
 [node name="die" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("7_mg3wa")
-bus = &"Voice"
+bus = &"Effect"
 
 [node name="UniParticles3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.56296, 0)
@@ -91,19 +96,8 @@ sampling_filter = 1
 [node name="6ArrowIdiot_6arrow" parent="." instance=ExtResource("6_46gg4")]
 transform = Transform3D(0.691742, 0, 0, 0, 0.691742, 0, 0, 0, 0.691742, 0, -0.31955, 0)
 
-[node name="Skeleton3D" parent="6ArrowIdiot_6arrow/Armature" index="0"]
-bones/0/rotation = Quaternion(-2.98023e-08, 1.19209e-07, -2.52435e-29, 1)
-bones/1/rotation = Quaternion(-3.55271e-15, 1.77636e-14, -4.03897e-28, 1)
-
 [node name="6ArrowIdiot" parent="." instance=ExtResource("1_c7bfx")]
 transform = Transform3D(0.691742, 0, 0, 0, 0.691742, 0, 0, 0, 0.691742, 0, -0.31955, 0)
-
-[node name="Skeleton3D" parent="6ArrowIdiot/Armature" index="0"]
-bones/1/rotation = Quaternion(-3.55271e-15, 1.77636e-14, -4.54384e-28, 1)
-bones/2/position = Vector3(0.590863, 2.68106, -0.637923)
-bones/2/rotation = Quaternion(-0.31591, 0.244548, -0.680749, 0.613985)
-bones/3/position = Vector3(0.606549, 2.68106, 0.60655)
-bones/3/rotation = Quaternion(0.454145, -0.0256747, -0.437006, 0.775963)
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.139963, 1.07881, 0)

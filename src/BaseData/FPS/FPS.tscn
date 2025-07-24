@@ -86,27 +86,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 cull_mask = 1048573
 fov = 90.0
 
-[node name="aim" type="Panel" parent="head/Camera3D"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="cursor" type="Panel" parent="head/Camera3D/aim"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = -12.0
-offset_bottom = -12.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="FaceRay" type="RayCast3D" parent="head"]
 target_position = Vector3(0, 0, -2.25)
 collision_mask = 2
@@ -138,18 +117,24 @@ script = ExtResource("2_4l4tl")
 [node name="Weapon31" parent="head/SubViewportContainer/SubViewport/Camera3D" instance=ExtResource("2_140ap")]
 transform = Transform3D(0.692029, 0, 0.0911073, 0, 0.698, 0, -0.0911073, 0, 0.692029, 1.07, -0.911, -1.327)
 
+[node name="Skeleton3D" parent="head/SubViewportContainer/SubViewport/Camera3D/Weapon31/Armature" index="0"]
+bones/0/position = Vector3(-0.122313, -0.00182251, -0.000668723)
+bones/0/rotation = Quaternion(-0.000948817, -0.000270342, 0.000653146, 0.999999)
+
 [node name="Cube" parent="head/SubViewportContainer/SubViewport/Camera3D/Weapon31/Armature/Skeleton3D" index="0"]
 layers = 2
 
 [node name="Cylinder" parent="head/SubViewportContainer/SubViewport/Camera3D/Weapon31/Armature/Skeleton3D" index="1"]
 layers = 2
 
-[node name="BoneAttachment3D_" type="BoneAttachment3D" parent="head/SubViewportContainer/SubViewport/Camera3D/Weapon31/Armature/Skeleton3D" index="2"]
-transform = Transform3D(1, 1.13488e-24, -2.13325e-24, 1.61177e-24, 0.344467, 0.938798, 1.80026e-24, -0.938798, 0.344467, -0.122313, 2.01931, -1.51103)
+[node name="BoneAttachment3D_" type="BoneAttachment3D" parent="head/SubViewportContainer/SubViewport/Camera3D/Weapon31"]
+transform = Transform3D(0.999999, 5.8949e-05, -0.00141253, 0.00141265, -0.00189796, 0.999997, 5.62668e-05, -0.999998, -0.00189804, 0.0145087, 0.258361, -1.64473)
 bone_name = "shoot"
 bone_idx = 1
+use_external_skeleton = true
+external_skeleton = NodePath("../Armature/Skeleton3D")
 
-[node name="fire" type="Node3D" parent="head/SubViewportContainer/SubViewport/Camera3D/Weapon31/Armature/Skeleton3D/BoneAttachment3D_"]
+[node name="fire" type="Node3D" parent="head/SubViewportContainer/SubViewport/Camera3D/Weapon31/BoneAttachment3D_"]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 5.68434e-14, -1.06581e-14, 0, 1, -0.0254359, 0.32725, 1.19209e-07)
 script = ExtResource("7_0hmwb")
 start_lifetime_constant = 0.02
@@ -173,13 +158,13 @@ sampling_filter = 1
 rendering_layer = 2
 custom_mesh = SubResource("QuadMesh_vi2m2")
 
-[node name="flight" type="OmniLight3D" parent="head/SubViewportContainer/SubViewport/Camera3D/Weapon31/Armature/Skeleton3D/BoneAttachment3D_/fire"]
+[node name="flight" type="OmniLight3D" parent="head/SubViewportContainer/SubViewport/Camera3D/Weapon31/BoneAttachment3D_/fire"]
 transform = Transform3D(1.43266, 0, -3.22756e-09, 0, 1.43266, -3.79811e-09, 7.10543e-15, 0, 1.43266, -2.01344, -0.546712, -4.76837e-07)
 visible = false
 layers = 3
 light_energy = 1.726
 
-[node name="flight2" type="OmniLight3D" parent="head/SubViewportContainer/SubViewport/Camera3D/Weapon31/Armature/Skeleton3D/BoneAttachment3D_/fire"]
+[node name="flight2" type="OmniLight3D" parent="head/SubViewportContainer/SubViewport/Camera3D/Weapon31/BoneAttachment3D_/fire"]
 transform = Transform3D(1.43266, 0, -3.22756e-09, 0, 1.43266, -3.79811e-09, 7.10543e-15, 0, 1.43266, -1.4555, -1.17919, -0.368858)
 layers = 2
 light_energy = 0.3
@@ -201,7 +186,7 @@ bones/0/position = Vector3(1.106e-16, 0.00745063, 1.37637)
 layers = 2
 
 [node name="SpotLight3D" type="SpotLight3D" parent="head/SubViewportContainer/SubViewport/Camera3D/flashLight"]
-transform = Transform3D(1.3245, 0, 0, 0, 1.3245, 0, 0, 0, 1.3245, 0, 0, -1.63183)
+transform = Transform3D(1.3245, 0, 0, 0, 1.3245, 0, 0, 0, 1.3245, 1.739, 0, 2.06078)
 layers = 3
 light_energy = 3.0
 spot_range = 60.585
@@ -229,14 +214,30 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="UI" type="Control" parent="."]
-layout_mode = 3
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 2
+script = ExtResource("9_vi2m2")
+
+[node name="aim" type="Panel" parent="UI"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("9_vi2m2")
+
+[node name="cursor" type="Panel" parent="UI/aim"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="settings" type="Window" parent="UI"]
 position = Vector2i(60, 36)
@@ -273,6 +274,20 @@ theme_override_font_sizes/font_size = 45
 text = "Full Screen Mode"
 
 [node name="sep2" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wftsh")
+
+[node name="windowMode2" type="HBoxContainer" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+layout_mode = 2
+
+[node name="musicMuteButton" type="Button" parent="UI/settings/BLACKHOLE/VBoxContainer/windowMode2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_iw2cc")
+theme_override_font_sizes/font_size = 45
+text = "Close Music"
+
+[node name="sep9" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_wftsh")
 
@@ -341,7 +356,7 @@ max_value = 0.0
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_wftsh")
 
-[node name="EffectVolumeText2" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
+[node name="AtmosphereVolumeText" type="Label" parent="UI/settings/BLACKHOLE/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_iw2cc")
 theme_override_font_sizes/font_size = 27
@@ -438,7 +453,6 @@ layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_wftsh")
 
 [node name="health" type="Label" parent="UI"]
-layout_mode = 0
 offset_left = 22.0
 offset_top = 17.0
 offset_right = 277.0
@@ -448,7 +462,6 @@ theme_override_fonts/font = ExtResource("3_iw2cc")
 theme_override_font_sizes/font_size = 60
 
 [node name="fps" type="Label" parent="UI"]
-layout_mode = 0
 offset_left = 1468.0
 offset_top = 18.0
 offset_right = 1585.0
@@ -468,6 +481,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_140ap")
 
 [connection signal="close_requested" from="UI/settings" to="UI/settings" method="_on_close_requested"]
 [connection signal="pressed" from="UI/settings/BLACKHOLE/VBoxContainer/windowMode/WindowMode" to="UI/settings" method="_on_window_mode_pressed"]
+[connection signal="pressed" from="UI/settings/BLACKHOLE/VBoxContainer/windowMode2/musicMuteButton" to="UI/settings" method="_on_music_mute_button_pressed"]
 [connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/mouseSpeed/mousespeedSlider" to="UI/settings" method="_on_mousespeed_slider_value_changed"]
 [connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/MusicVolume/MusicVolumeSlider" to="UI/settings" method="_on_music_volume_slider_value_changed"]
 [connection signal="value_changed" from="UI/settings/BLACKHOLE/VBoxContainer/EffectVolume/EffectVolumeSlider" to="UI/settings" method="_on_effect_volume_slider_value_changed"]

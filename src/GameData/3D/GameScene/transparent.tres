@@ -4,6 +4,5 @@
 resource_name = "transparent"
 transparency = 1
 cull_mode = 2
-diffuse_mode = 3
-specular_mode = 2
-albedo_color = Color(0.381704, 0.381703, 0.381703, 0.811765)
+shading_mode = 0
+albedo_color = Color(0.248401, 0.2484, 0.2484, 0.811765)
